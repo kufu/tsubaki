@@ -1,0 +1,7 @@
+machine:
+  timezone:
+    Asia/Tokyo
+
+test:
+  pre:
+    - bundle exec rubocop --display-cop-names
