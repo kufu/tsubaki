@@ -1,7 +1,16 @@
 inherit_from: '.rubocop_todo.yml'
 
+Style/AsciiComments:
+  Enabled: false
+
+Style/BlockDelimiters:
+  Enabled: false
+
 Style/Documentation:
   Enabled: false
 
-Style/AsciiComments:
+Style/DoubleNegation:
   Enabled: false
+
+Metrics/AbcSize:
+  Max: 18
