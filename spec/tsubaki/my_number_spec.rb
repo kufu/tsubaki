@@ -1,6 +1,13 @@
 require 'spec_helper'
 
 describe Tsubaki::MyNumber do
+  describe '.rand' do
+    it 'generates valid random my number' do
+      n = Tsubaki::MyNumber.rand
+      expect(Tsubaki::MyNumber.new(n, strict: true).valid?).to be_truthy
+    end
+  end
+
   describe '.calc_check_digit' do
     context 'given invalid digits' do
       [

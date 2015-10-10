@@ -1,5 +1,11 @@
 module Tsubaki
   class MyNumber
+    def self.rand
+      digits = 11.times.map { Kernel.rand(10) }.join
+      check_digit = calc_check_digit(digits)
+      "#{digits}#{check_digit}"
+    end
+
     def self.calc_check_digit(digits)
       fail 'must be a 11 digit number' unless digits =~ /\A\d{11}\z/
 
