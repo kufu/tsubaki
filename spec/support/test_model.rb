@@ -18,6 +18,10 @@ class StrictTestUser < TestModel
   validates :my_number, my_number: { strict: true }
 end
 
+class StrictDividerTestUser < TestModel
+  validates :my_number, my_number: { strict: true, divider: '-' }
+end
+
 class TestUserAllowsNil < TestModel
   validates :my_number, my_number: { allow_nil: true }
 end

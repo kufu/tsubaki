@@ -4,7 +4,8 @@ require 'active_model/validator'
 module Tsubaki
   class MyNumberValidator < ActiveModel::EachValidator
     def validate_each(record, attribute, value)
-      record.errors[attribute] << (options[:message] || :invalid) unless value =~ /\A\d{12}\z/
+      return if Tsubaki::MyNumber.new(value, options).valid?
+      record.errors[attribute] << (options[:message] || :invalid)
     end
   end
 end

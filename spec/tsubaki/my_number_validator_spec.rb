@@ -1,14 +1,70 @@
 require 'spec_helper'
 
 describe Tsubaki::MyNumberValidator do
-  describe 'validation' do
+  describe 'validation w/o any options' do
     context 'given the valid my numbers' do
       %w(
-        000000000000
+        012345678912
         111111111111
         222222222222).each do |num|
         it "#{num} should be valid" do
           expect(TestUser.new(my_number: num)).to be_valid
+        end
+      end
+    end
+    context 'given the invalid my numbers' do
+      %w(
+        01234567891
+        11111111111X
+        2222222222222).each do |num|
+        it "#{num} should be invalid" do
+          expect(TestUser.new(my_number: num)).to be_invalid
+        end
+      end
+    end
+  end
+
+  describe 'validation w/ strict option' do
+    context 'given the valid my numbers' do
+      %w(
+        465281266333
+        191187943353
+        116428722815).each do |num|
+        it "#{num} should be valid" do
+          expect(StrictTestUser.new(my_number: num)).to be_valid
+        end
+      end
+    end
+    context 'given the invalid my numbers' do
+      %w(
+        012345678912
+        111111111111
+        222222222222).each do |num|
+        it "#{num} should be invalid" do
+          expect(StrictTestUser.new(my_number: num)).to be_invalid
+        end
+      end
+    end
+  end
+
+  describe 'validation w/ strict and divider option' do
+    context 'given the valid my numbers' do
+      %w(
+        465281266333
+        1911-8794-3353
+        116428--722815).each do |num|
+        it "#{num} should be valid" do
+          expect(StrictDividerTestUser.new(my_number: num)).to be_valid
+        end
+      end
+    end
+    context 'given the invalid my numbers' do
+      %w(
+        012345678912
+        111111111111
+        222222222222).each do |num|
+        it "#{num} should be invalid" do
+          expect(StrictDividerTestUser.new(my_number: num)).to be_invalid
         end
       end
     end
