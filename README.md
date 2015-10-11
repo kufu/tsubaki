@@ -4,8 +4,9 @@
 
 Each resident in Japan will be notified of his or her own Individual Number (a.k.a. "My Number") beginning in October 2015.
 
-A My Number consists of 12 digits & the last digit is used as a check digit.  
-This gem provides My Number validation.  
+A My Number consists of 12 digits & the last digit is used as a check digit.
+This gem provides My Number validator which inspects the format and (optionally) the check digit.  
+
 (We plan to implement other social security related code validators such as a basic pension number validator later.)
 
 ## Installation
