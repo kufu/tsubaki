@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ['kakipo']
   spec.email         = ['kakipo@gmail.com']
 
-  spec.summary       = 'TODO: Write a short summary, because Rubygems requires one.'
-  spec.description   = 'TODO: Write a longer description or delete this line.'
-  spec.homepage      = "'TODO: Put your gem's website or public repo URL here."
+  spec.summary       = 'Japanese soocial security code validators.'
+  spec.description   = 'A gem provides several social security code validators such as My Number validator, Basic Pension Number validator.'
+  spec.homepage      = 'https://github.com/kakipo/tsubaki'
   spec.license       = 'MIT'
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
