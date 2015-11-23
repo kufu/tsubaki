@@ -39,7 +39,7 @@ module Tsubaki
           result << " for #{@attribute_name}"
           result << ' wint strict mode' if @options[:strict].present?
           result << " with divider '#{@options[:divider]}'" if @options[:divider].present?
-          result << " and allow nil" if @options[:allow_nil].present?
+          result << ' and allow nil' if @options[:allow_nil].present?
           result
         end
 

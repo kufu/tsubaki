@@ -5,7 +5,7 @@ module Tsubaki
   class MyNumberValidator < ActiveModel::EachValidator
     def validate_each(record, attribute, value)
       return if Tsubaki::MyNumber.new(value, options).valid?
-      record.errors[attribute] << (options[:message] || :invalid)
+      record.errors.add(attribute, options[:message] || :invalid)
     end
   end
 end
