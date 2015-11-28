@@ -1,4 +1,5 @@
 require 'tsubaki/matchers/validate_my_number_of_matcher'
+require 'tsubaki/matchers/validate_corporate_number_of_matcher'
 
 module Tsubaki
   module Shoulda

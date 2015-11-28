@@ -5,15 +5,15 @@ module Tsubaki
       # the given attachment as specified.
       #
       # Example:
-      #   describe User do
-      #     it { should validate_my_number_of(:digits)
-      #     it { should validate_my_number_of(:digits).strict.with_divider('-') }
+      #   describe Corporation do
+      #     it { should validate_corporate_number_of(:digits)
+      #     it { should validate_corporate_number_of(:digits).strict.with_divider('-') }
       #   end
-      def validate_my_number_of(attribute_name)
-        ValidateMyNumberOfMatcher.new(attribute_name)
+      def validate_corporate_number_of(attribute_name)
+        ValidateCorporateNumberOfMatcher.new(attribute_name)
       end
 
-      class ValidateMyNumberOfMatcher
+      class ValidateCorporateNumberOfMatcher
         def initialize(attribute_name)
           @attribute_name = attribute_name
           @options = {}
@@ -35,7 +35,7 @@ module Tsubaki
         end
 
         def description
-          result = 'ensure my number format'
+          result = 'ensure corporate number format'
           result << " for #{@attribute_name}"
           result << ' wint strict mode' if @options[:strict].present?
           result << " with divider '#{@options[:divider]}'" if @options[:divider].present?
@@ -84,7 +84,7 @@ module Tsubaki
         def error_test_strict
           return true if @options[:strict].nil?
 
-          if valid_attribute_with?('111111111111')
+          if valid_attribute_with?('1111111111111')
             @failure_messages << 'strict mode is not be specified'
             false
           else
@@ -96,9 +96,9 @@ module Tsubaki
           return true if @options[:divider].nil?
 
           dummy_divider = @options[:divider].succ
-          invalid_my_number = "9656#{dummy_divider}7219#{dummy_divider}7231"
+          invalid_corporate_number = "7#{dummy_divider}1234#{dummy_divider}5678#{dummy_divider}9012"
 
-          if valid_attribute_with?(invalid_my_number)
+          if valid_attribute_with?(invalid_corporate_number)
             @failure_messages << "divider is not be specified or is not '#{@options[:divider]}'"
             false
           else
@@ -107,8 +107,8 @@ module Tsubaki
         end
 
         def error_test
-          if valid_attribute_with?('aaaabbbbcccc')
-            @failure_messages << 'my number validation is not specified'
+          if valid_attribute_with?('xaaaabbbbcccc')
+            @failure_messages << 'corporate number validation is not specified'
             false
           else
             true
@@ -133,9 +133,9 @@ module Tsubaki
         def no_error_test_divider
           return true if @options[:divider].nil?
 
-          valid_my_number = "9656#{@options[:divider]}7219#{@options[:divider]}7231"
+          valid_corporate_number = "7#{@options[:divider]}1234#{@options[:divider]}5678#{@options[:divider]}9012"
 
-          if !valid_attribute_with?(valid_my_number)
+          if !valid_attribute_with?(valid_corporate_number)
             @failure_messages << "divider is not be specified or is not '#{@options[:divider]}'"
             false
           else
@@ -144,8 +144,8 @@ module Tsubaki
         end
 
         def no_error_test
-          if !valid_attribute_with?('965672197231')
-            @failure_messages << 'my number validation is not specified'
+          if !valid_attribute_with?('7123456789012')
+            @failure_messages << 'corporate number validation is not specified'
             false
           else
             true
