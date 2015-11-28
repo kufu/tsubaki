@@ -10,6 +10,7 @@ class TestModel
   end
 end
 
+# For MyNumber
 class TestUser < TestModel
   validates :my_number, my_number: true
 end
@@ -32,4 +33,29 @@ end
 
 class TestUserWithMessage < TestModel
   validates :my_number, my_number: { message: 'is not looking very good!' }
+end
+
+# For CorporateNumber
+class TestCorporation < TestModel
+  validates :corporate_number, corporate_number: true
+end
+
+class StrictTestCorporation < TestModel
+  validates :corporate_number, corporate_number: { strict: true }
+end
+
+class StrictDividerTestCorporation < TestModel
+  validates :corporate_number, corporate_number: { strict: true, divider: '-' }
+end
+
+class TestCorporationAllowsNil < TestModel
+  validates :corporate_number, corporate_number: { allow_nil: true }
+end
+
+class TestCorporationAllowsNilFalse < TestModel
+  validates :corporate_number, corporate_number: { allow_nil: false }
+end
+
+class TestCorporationWithMessage < TestModel
+  validates :corporate_number, corporate_number: { message: 'is not looking very good!' }
 end
