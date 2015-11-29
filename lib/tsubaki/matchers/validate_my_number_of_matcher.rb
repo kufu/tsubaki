@@ -1,8 +1,8 @@
 module Tsubaki
   module Shoulda
     module Matchers
-      # Ensures that the given instance or class validates the content type of
-      # the given attachment as specified.
+      # Ensures that the given instance or class validates the format of
+      # the my number as specified.
       #
       # Example:
       #   describe User do
@@ -37,7 +37,7 @@ module Tsubaki
         def description
           result = 'ensure my number format'
           result << " for #{@attribute_name}"
-          result << ' wint strict mode' if @options[:strict].present?
+          result << ' with   strict mode' if @options[:strict].present?
           result << " with divider '#{@options[:divider]}'" if @options[:divider].present?
           result << ' and allow nil' if @options[:allow_nil].present?
           result

@@ -2,12 +2,9 @@
 
 [![Circle CI](https://circleci.com/gh/kakipo/tsubaki/tree/master.svg?style=svg)](https://circleci.com/gh/kakipo/tsubaki/tree/master)
 
-Each resident in Japan will be notified of his or her own Individual Number (a.k.a. "My Number") beginning in October 2015.
+Each resident in Japan will be notified of his or her own Individual Number (a.k.a. "My Number") beginning in October 2015, and each company will be given its own Corporate Number likewise.
 
-A My Number consists of 12 digits & the last digit is used as a check digit.
-This gem provides My Number validator which inspects the format and (optionally) the check digit.  
-
-(We plan to implement other social security related code validators such as a basic pension number validator later.)
+This gem provides both My Number validator and Corporate Number validator which inspect the format and (optionally) the check digit.  
 
 ## Installation
 
@@ -27,38 +24,86 @@ Or install it yourself as:
 
 ## Usage
 
-Add the following to your model:
+
+### My Number
+
+A My Number consists of 12 digits & the last digit is used as a check digit.
+
+To validate the format of an attribute, add the following to your model:
 
 ```ruby
-validates :my_number, my_number: true
+# Verifies only the length of the digits:
+validates :digits, my_number: true, allow_nil: true
+
+# In order to have stricter validation which verifies the check digit, enable strict mode:
+validates :digits, my_number: { strict: true }
+
+# Or if a My Number contains any dividers, specify it:
+validates :digits, my_number: { divider: '-' } # => 1111-2222-3333-4444 should be valid
 ```
 
-## Verify the check digit
+### Corporate Number
 
-In order to have stricter validation which verifies the check digit, enable strict mode.
+A Corporate Number consists of 13 digits & the first digit is used as a check digit.
+
+To validate the format of an attribute, add the following to your model:
 
 ```ruby
-validates :my_number, my_number: { strict: true }
+# Verifies only the length of the digits:
+validates :digits, corporate_number: true, allow_nil: true
+
+# In order to have stricter validation which verifies the check digit, enable strict mode:
+validates :digits, corporate_number: { strict: true }
+
+# Or if a Corporate Number contains any dividers, specify it:
+validates :digits, corporate_number: { divider: '-' } # => 9-1111-2222-3333-4444 should be valid
 ```
 
-See: [行政手続における特定の個人を識別するための番号の利用等に関する法律の規定による通知カード及び個人番号カード並びに情報提供ネットワークシステムによる特定個人情報の提供等に関する省令](http://law.e-gov.go.jp/announce/H26F11001000085.html)
 
-## Divider
-
-If a My Number contains any dividers, specify it.
-
-```ruby
-# 1111-2222-3333-4444 should be valid
-validates :my_number, my_number: { divider: '-' }
-```
 
 ## Goodies
 
-You can obtain a random yet having right check digit My Number.
+### Rspec matchers
+
+To ensure appropriate validations are specified, Tsubaki includes rspec matchers.
+
+```ruby
+# In spec_helper.rb, you'll need to require the matchers:
+require 'tsubaki/matchers'
+
+# And include the module:
+RSpec.configure do |config|
+  config.include Tsubaki::Shoulda::Matchers
+end
+```
+
+```ruby
+describe User do
+  # For My Number validation
+  it { should validate_my_number_of(:digits) }
+
+  # To ensure options:
+  it { should validate_validate_my_number_of(:digits).strict.with_divider('-').allow_nil }
+end
+
+describe Company do
+  # For Corporate Number validation
+  it { should validate_corporate_number_of(:digits) }
+
+  # To ensure options:
+  it { should validate_validate_corporate_number_of(:digits).strict.with_divider('-') }
+end
+```
+
+
+### Random number generators
+
+You can obtain a random yet having right check digit numbers.
 This is useful when creating dummy records.
 
 ```ruby
 Tsubaki::MyNumber.rand # => 765895492872
+Tsubaki::CorporateNumber.rand # => 5868731863533
 ```
 
 ## Development
