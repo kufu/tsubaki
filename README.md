@@ -4,7 +4,7 @@
 
 Each resident in Japan will be notified of his or her own Individual Number (a.k.a. "My Number") beginning in October 2015, and each company will be given its own Corporate Number likewise.
 
-This gem provides both My Number validator and Corporate Number validator which inspect the format and (optionally) the check digit.  
+This gem provides both My Number and Corporate Number validators which inspect the format and (optionally) the check digit.  
 
 ## Installation
 
@@ -32,14 +32,14 @@ A My Number consists of 12 digits & the last digit is used as a check digit.
 To validate the format of an attribute, add the following to your model:
 
 ```ruby
-# Verifies only the length of the digits:
-validates :digits, my_number: true, allow_nil: true
+# Verifies the format and its check digit with `strict` option:
+validates :digits, my_number: { strict: true }, allow_nil: true
 
-# In order to have stricter validation which verifies the check digit, enable strict mode:
-validates :digits, my_number: { strict: true }
+# Without strict options, it verifies only the length of the digits:
+validates :digits, my_number: true
 
 # Or if a My Number contains any dividers, specify it:
-validates :digits, my_number: { divider: '-' } # => 1111-2222-3333-4444 should be valid
+validates :digits, my_number: { strict: true, divider: '-' } # => 4652-8126-6333 should be valid
 ```
 
 ### Corporate Number
@@ -49,14 +49,14 @@ A Corporate Number consists of 13 digits & the first digit is used as a check di
 To validate the format of an attribute, add the following to your model:
 
 ```ruby
-# Verifies only the length of the digits:
-validates :digits, corporate_number: true, allow_nil: true
+# Verifies the format and its check digit with `strict` option:
+validates :digits, corporate_number: { strict: true }, allow_nil: true
 
-# In order to have stricter validation which verifies the check digit, enable strict mode:
-validates :digits, corporate_number: { strict: true }
+# Without strict options, it verifies only the length of the digits:
+validates :digits, corporate_number: true
 
 # Or if a Corporate Number contains any dividers, specify it:
-validates :digits, corporate_number: { divider: '-' } # => 9-1111-2222-3333-4444 should be valid
+validates :digits, corporate_number: { strict: true, divider: '-' } # => 5-8356-7825-6246 should be valid
 ```
 
 
