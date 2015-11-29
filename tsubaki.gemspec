@@ -10,8 +10,8 @@ Gem::Specification.new do |spec|
   spec.email         = ['kakipo@gmail.com']
 
   spec.summary       = 'Japanese soocial security code validators.'
-  spec.description   = 'A gem provides several social security code validators such as My Number validator, Basic Pension Number validator.'
-  spec.homepage      = 'https://github.com/kakipo/tsubaki'
+  spec.description   = 'A gem provides My Number & Corporate Number validators'
+  spec.homepage      = 'https://github.com/kufu/tsubaki'
   spec.license       = 'MIT'
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or

@@ -1,6 +1,6 @@
 # Tsubaki
 
-[![Circle CI](https://circleci.com/gh/kakipo/tsubaki/tree/master.svg?style=svg)](https://circleci.com/gh/kakipo/tsubaki/tree/master)
+[![Circle CI](https://circleci.com/gh/kufu/tsubaki/tree/master.svg?style=svg)](https://circleci.com/gh/kufu/tsubaki/tree/master)
 
 Each resident in Japan will be notified of his or her own Individual Number (a.k.a. "My Number") beginning in October 2015, and each company will be given its own Corporate Number likewise.
 
@@ -114,7 +114,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/kakipo/tsubaki.
+Bug reports and pull requests are welcome on GitHub at https://github.com/kufu/tsubaki.
 
 
 ## License
