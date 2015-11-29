@@ -35,7 +35,7 @@ To validate the format of an attribute, add the following to your model:
 # Verifies the format and its check digit with `strict` option:
 validates :digits, my_number: { strict: true }, allow_nil: true
 
-# Without strict options, it verifies only the length of the digits:
+# Without strict option, it verifies only the length of the digits:
 validates :digits, my_number: true
 
 # Or if a My Number contains any dividers, specify it:
@@ -52,7 +52,7 @@ To validate the format of an attribute, add the following to your model:
 # Verifies the format and its check digit with `strict` option:
 validates :digits, corporate_number: { strict: true }, allow_nil: true
 
-# Without strict options, it verifies only the length of the digits:
+# Without strict option, it verifies only the length of the digits:
 validates :digits, corporate_number: true
 
 # Or if a Corporate Number contains any dividers, specify it:
