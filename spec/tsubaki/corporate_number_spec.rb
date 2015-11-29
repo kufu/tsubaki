@@ -4,6 +4,7 @@ describe Tsubaki::CorporateNumber do
   describe '.rand' do
     it 'generates valid random corporate number' do
       n = Tsubaki::CorporateNumber.rand
+      p "n=#{n}"
       expect(Tsubaki::CorporateNumber.new(n, strict: true).valid?).to be_truthy
     end
   end
@@ -112,7 +113,7 @@ describe Tsubaki::CorporateNumber do
           '4-8356-7825-6246',
           '5678-9018',
           '1234567890123',
-          '3-9876-5432-1098',
+          '2-9876-5432-1098',
           '3--112233--445566'
         ].each do |n|
           describe "#{n}" do
@@ -172,7 +173,7 @@ describe Tsubaki::CorporateNumber do
     end
     context 'given the invalid corporate numbers' do
       %w(
-        7123456789012
+        6123456789012
         4835678256246
       ).each do |n|
         describe "#{n}" do
