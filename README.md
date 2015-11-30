@@ -33,7 +33,7 @@ To validate the format of an attribute, add the following to your model:
 
 ```ruby
 # Verifies the format and its check digit with `strict` option:
-validates :digits, my_number: { strict: true }, allow_nil: true
+validates :digits, my_number: { strict: true, allow_blank: true }
 
 # Without strict option, it verifies only the length of the digits:
 validates :digits, my_number: true
@@ -50,7 +50,7 @@ To validate the format of an attribute, add the following to your model:
 
 ```ruby
 # Verifies the format and its check digit with `strict` option:
-validates :digits, corporate_number: { strict: true }, allow_nil: true
+validates :digits, corporate_number: { strict: true, allow_blank: true }
 
 # Without strict option, it verifies only the length of the digits:
 validates :digits, corporate_number: true
@@ -83,7 +83,7 @@ describe User do
   it { should validate_my_number_of(:digits) }
 
   # To ensure options:
-  it { should validate_validate_my_number_of(:digits).strict.with_divider('-').allow_nil }
+  it { should validate_validate_my_number_of(:digits).strict.with_divider('-').allow_blank }
 end
 
 describe Company do

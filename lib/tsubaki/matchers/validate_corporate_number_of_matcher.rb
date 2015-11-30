@@ -19,7 +19,7 @@ module Tsubaki
           @options = {}
           @options[:strict] = nil
           @options[:divider] = nil
-          @options[:allow_nil] = nil
+          @options[:allow_blank] = nil
           @failure_messages = []
           self
         end
@@ -39,7 +39,7 @@ module Tsubaki
           result << " for #{@attribute_name}"
           result << ' with strict mode' if @options[:strict].present?
           result << " with divider '#{@options[:divider]}'" if @options[:divider].present?
-          result << ' and allow nil' if @options[:allow_nil].present?
+          result << ' and allow blank' if @options[:allow_blank].present?
           result
         end
 
@@ -53,19 +53,19 @@ module Tsubaki
           self
         end
 
-        def allow_nil(allow_nil = true)
-          @options[:allow_nil] = allow_nil
+        def allow_blank(allow_blank = true)
+          @options[:allow_blank] = allow_blank
           self
         end
 
         protected
 
         def error_when_not_valid
-          [error_test_allow_nil, error_test_strict, error_test_divider, error_test]
+          [error_test_allow_blank, error_test_strict, error_test_divider, error_test]
         end
 
         def no_error_when_valid
-          [no_error_test_allow_nil, no_error_test_strict, no_error_test_divider, no_error_test]
+          [no_error_test_allow_blank, no_error_test_strict, no_error_test_divider, no_error_test]
         end
 
         private
@@ -77,7 +77,7 @@ module Tsubaki
           dup_subject.errors[@attribute_name].blank?
         end
 
-        def error_test_allow_nil
+        def error_test_allow_blank
           true
         end
 
@@ -115,11 +115,11 @@ module Tsubaki
           end
         end
 
-        def no_error_test_allow_nil
-          return true if @options[:allow_nil].nil?
+        def no_error_test_allow_blank
+          return true if @options[:allow_blank].nil?
 
           if !valid_attribute_with?(nil)
-            @failure_messages << 'allow_nil is not be specified'
+            @failure_messages << 'allow_blank is not be specified'
             false
           else
             true

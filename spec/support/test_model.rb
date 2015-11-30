@@ -23,12 +23,12 @@ class StrictDividerTestUser < TestModel
   validates :my_number, my_number: { strict: true, divider: '-' }
 end
 
-class TestUserAllowsNil < TestModel
-  validates :my_number, my_number: { allow_nil: true }
+class TestUserAllowBlank < TestModel
+  validates :my_number, my_number: { strict: true, allow_blank: true }
 end
 
-class TestUserAllowsNilFalse < TestModel
-  validates :my_number, my_number: { allow_nil: false }
+class TestUserAllowBlankFalse < TestModel
+  validates :my_number, my_number: { allow_blank: false }
 end
 
 class TestUserWithMessage < TestModel
@@ -48,12 +48,12 @@ class StrictDividerTestCorporation < TestModel
   validates :corporate_number, corporate_number: { strict: true, divider: '-' }
 end
 
-class TestCorporationAllowsNil < TestModel
-  validates :corporate_number, corporate_number: { allow_nil: true }
+class TestCorporationAllowBlank < TestModel
+  validates :corporate_number, corporate_number: { strict: true, allow_blank: true }
 end
 
-class TestCorporationAllowsNilFalse < TestModel
-  validates :corporate_number, corporate_number: { allow_nil: false }
+class TestCorporationAllowBlankFalse < TestModel
+  validates :corporate_number, corporate_number: { allow_blank: false }
 end
 
 class TestCorporationWithMessage < TestModel

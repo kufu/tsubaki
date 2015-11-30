@@ -69,14 +69,14 @@ describe Tsubaki::CorporateNumberValidator do
   end
 
   describe 'nil corporate_number' do
-    it 'should not be valid when :allow_nil option is missing' do
+    it 'should not be valid when :allow_blank option is missing' do
       expect(TestCorporation.new(corporate_number: nil)).not_to be_valid
     end
-    it 'should be valid when :allow_nil options is set to true' do
-      expect(TestCorporationAllowsNil.new(corporate_number: nil)).to be_valid
+    it 'should be valid when :allow_blank options is set to true' do
+      expect(TestCorporationAllowBlank.new(corporate_number: nil)).to be_valid
     end
-    it 'should not be valid when :allow_nil option is set to false' do
-      expect(TestCorporationAllowsNilFalse.new(corporate_number: nil)).not_to be_valid
+    it 'should not be valid when :allow_blank option is set to false' do
+      expect(TestCorporationAllowBlankFalse.new(corporate_number: nil)).not_to be_valid
     end
   end
 end

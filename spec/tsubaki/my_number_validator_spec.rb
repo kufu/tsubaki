@@ -71,14 +71,14 @@ describe Tsubaki::MyNumberValidator do
   end
 
   describe 'nil my_number' do
-    it 'should not be valid when :allow_nil option is missing' do
+    it 'should not be valid when :allow_blank option is missing' do
       expect(TestUser.new(my_number: nil)).not_to be_valid
     end
-    it 'should be valid when :allow_nil options is set to true' do
-      expect(TestUserAllowsNil.new(my_number: nil)).to be_valid
+    it 'should be valid when :allow_blank options is set to true' do
+      expect(TestUserAllowBlank.new(my_number: nil)).to be_valid
     end
-    it 'should not be valid when :allow_nil option is set to false' do
-      expect(TestUserAllowsNilFalse.new(my_number: nil)).not_to be_valid
+    it 'should not be valid when :allow_blank option is set to false' do
+      expect(TestUserAllowBlankFalse.new(my_number: nil)).not_to be_valid
     end
   end
 end
