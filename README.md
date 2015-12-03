@@ -1,8 +1,6 @@
-# Tsubaki
+# Tsubaki [![Circle CI](https://circleci.com/gh/kufu/tsubaki/tree/master.svg?style=svg)](https://circleci.com/gh/kufu/tsubaki/tree/master)
 
 ![tsubaki_1427x327](https://cloud.githubusercontent.com/assets/2214179/11577574/0f3394d6-9a62-11e5-81ee-7386c29c30e1.png)
-
-[![Circle CI](https://circleci.com/gh/kufu/tsubaki/tree/master.svg?style=svg)](https://circleci.com/gh/kufu/tsubaki/tree/master)
 
 Each resident in Japan is notified of his or her own Individual Number (a.k.a. **"My Number"**) beginning in October 2015, and each company is given its own **Corporate Number** likewise.
 
@@ -100,13 +98,15 @@ end
 
 ### Random number generators
 
-You can obtain a random yet having right check digit numbers.
-This is useful when creating dummy records.
+You can obtain a random yet having valid check digit numbers.
+These are useful when creating dummy records.
 
 ```ruby
 Tsubaki::MyNumber.rand # => 765895492872
 Tsubaki::CorporateNumber.rand # => 5868731863533
 ```
+
+[擬似マイナンバーくん](https://my-number-kun.herokuapp.com/) demonstrates the random number generators.
 
 ## Development
 
