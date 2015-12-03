@@ -1,5 +1,7 @@
 # Tsubaki
 
+![tsubaki_1427x327](https://cloud.githubusercontent.com/assets/2214179/11577574/0f3394d6-9a62-11e5-81ee-7386c29c30e1.png)
+
 [![Circle CI](https://circleci.com/gh/kufu/tsubaki/tree/master.svg?style=svg)](https://circleci.com/gh/kufu/tsubaki/tree/master)
 
 Each resident in Japan will be notified of his or her own Individual Number (a.k.a. "My Number") beginning in October 2015, and each company will be given its own Corporate Number likewise.
