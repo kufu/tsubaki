@@ -4,9 +4,9 @@
 
 [![Circle CI](https://circleci.com/gh/kufu/tsubaki/tree/master.svg?style=svg)](https://circleci.com/gh/kufu/tsubaki/tree/master)
 
-Each resident in Japan will be notified of his or her own Individual Number (a.k.a. "My Number") beginning in October 2015, and each company will be given its own Corporate Number likewise.
+Each resident in Japan is notified of his or her own Individual Number (a.k.a. **"My Number"**) beginning in October 2015, and each company is given its own **Corporate Number** likewise.
 
-This gem provides both My Number and Corporate Number validators which inspect the format and (optionally) the check digit.  
+This gem provides both **My Number** and **Corporate Number** validators which inspect the format and (optionally) the check digit.  
 
 ## Installation
 
