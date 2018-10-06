@@ -1,7 +1,8 @@
 module Tsubaki
   class CorporateNumber
     def self.rand
-      digits = 12.times.map { Kernel.rand(10) }.join
+      n = 12
+      digits = format("%0#{n}d", SecureRandom.random_number(10**n))
       check_digit = calc_check_digit(digits)
       "#{check_digit}#{digits}"
     end

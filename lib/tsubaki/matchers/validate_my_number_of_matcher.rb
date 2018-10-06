@@ -21,7 +21,6 @@ module Tsubaki
           @options[:divider] = nil
           @options[:allow_nil] = nil
           @failure_messages = []
-          self
         end
 
         def matches?(subject)

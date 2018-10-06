@@ -1,7 +1,8 @@
 module Tsubaki
   class MyNumber
     def self.rand
-      digits = 11.times.map { Kernel.rand(10) }.join
+      n = 11
+      digits = format("%0#{n}d", SecureRandom.random_number(10**n))
       check_digit = calc_check_digit(digits)
       "#{digits}#{check_digit}"
     end
