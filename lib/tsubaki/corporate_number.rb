@@ -7,7 +7,7 @@ module Tsubaki
     end
 
     def self.calc_check_digit(digits)
-      fail 'must be a 12 digit number' unless digits =~ /\A\d{12}\z/
+      raise 'must be a 12 digit number' unless digits =~ /\A\d{12}\z/
 
       arr = digits.chars.map(&:to_i).reverse!
       rem = (1..12).inject(0) do |sum, n|
@@ -34,6 +34,7 @@ module Tsubaki
 
     def valid_check_digit?
       return false unless valid_pattern?
+
       plain_digits[0].to_i == self.class.calc_check_digit(plain_digits[1, 12]).to_i
     end
 
