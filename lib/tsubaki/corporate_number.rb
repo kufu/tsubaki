@@ -1,13 +1,14 @@
 module Tsubaki
   class CorporateNumber
     def self.rand
-      digits = 12.times.map { Kernel.rand(10) }.join
+      n = 12
+      digits = format("%0#{n}d", SecureRandom.random_number(10**n))
       check_digit = calc_check_digit(digits)
       "#{check_digit}#{digits}"
     end
 
     def self.calc_check_digit(digits)
-      fail 'must be a 12 digit number' unless digits =~ /\A\d{12}\z/
+      raise 'must be a 12 digit number' unless digits =~ /\A\d{12}\z/
 
       arr = digits.chars.map(&:to_i).reverse!
       rem = (1..12).inject(0) do |sum, n|
@@ -34,6 +35,7 @@ module Tsubaki
 
     def valid_check_digit?
       return false unless valid_pattern?
+
       plain_digits[0].to_i == self.class.calc_check_digit(plain_digits[1, 12]).to_i
     end
 

@@ -1,18 +1,19 @@
 module Tsubaki
   class MyNumber
     def self.rand
-      digits = 11.times.map { Kernel.rand(10) }.join
+      n = 11
+      digits = format("%0#{n}d", SecureRandom.random_number(10**n))
       check_digit = calc_check_digit(digits)
       "#{digits}#{check_digit}"
     end
 
     def self.calc_check_digit(digits)
-      fail 'must be a 11 digit number' unless digits =~ /\A\d{11}\z/
+      raise 'must be a 11 digit number' unless digits =~ /\A\d{11}\z/
 
       arr = digits.chars.map(&:to_i).reverse!
       rem = (1..11).inject(0) do |sum, n|
         pn = arr[n - 1]
-        qn = (n <= 6) ? (n + 1) : (n - 5)
+        qn = n <= 6 ? (n + 1) : (n - 5)
         sum + pn * qn
       end % 11
 
@@ -34,6 +35,7 @@ module Tsubaki
 
     def valid_check_digit?
       return false unless valid_pattern?
+
       plain_digits[-1].to_i == self.class.calc_check_digit(plain_digits[0, 11]).to_i
     end
 
