@@ -1,0 +1,17 @@
+version: 2
+
+jobs:
+  ruby-2.5:
+    docker:
+      - image: ruby:2.5.1
+    steps:
+      - checkout
+      - run: bundle install
+      - run: bundle exec rake
+      - run: bundle exec rubocop
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - ruby-2.5
