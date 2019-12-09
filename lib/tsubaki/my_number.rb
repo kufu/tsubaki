@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Tsubaki
   class MyNumber
     def self.rand
