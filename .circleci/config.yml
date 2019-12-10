@@ -3,7 +3,7 @@ version: 2
 jobs:
   ruby-2.5:
     docker:
-      - image: ruby:2.5.1
+      - image: ruby:2.5.7
     steps:
       - checkout
       - run: bundle install
