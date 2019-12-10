@@ -6,6 +6,7 @@ jobs:
       - image: ruby:2.5.7
     steps:
       - checkout
+      - run: gem install bundler -v 1.17.3
       - run: bundle install
       - run: bundle exec rake
       - run: bundle exec rubocop
