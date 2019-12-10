@@ -59,7 +59,7 @@ module Tsubaki
           self
         end
 
-        protected
+        private
 
         def error_when_not_valid
           [error_test_allow_blank, error_test_strict, error_test_divider, error_test]
@@ -68,8 +68,6 @@ module Tsubaki
         def no_error_when_valid
           [no_error_test_allow_blank, no_error_test_strict, no_error_test_divider, no_error_test]
         end
-
-        private
 
         def valid_attribute_with?(value)
           dup_subject = @subject.dup
