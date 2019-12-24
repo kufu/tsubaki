@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  ruby-2.5:
+  ruby:
     docker:
       - image: ruby:2.5.7
     steps:
@@ -17,4 +17,4 @@ workflows:
   version: 2
   test:
     jobs:
-      - ruby-2.5
+      - ruby
