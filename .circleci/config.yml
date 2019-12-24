@@ -6,20 +6,25 @@ jobs:
       - image: ruby:2.5.7
     steps:
       - checkout
-      - run: gem install bundler -v 1.17.3
-      - run: bundle install
-      - run: bundle exec rake
-      - run: bundle exec rubocop
-
+      - run:
+          name: submodule update and execute
+          command: |
+            gem install bundler -v 1.17.3
+            bundle install
+            bundle exec rake
+            bundle exec rubocop
   ruby-2.6:
     docker:
       - image: ruby:2.6.5
     steps:
       - checkout
-      - run: gem install bundler -v 1.17.3
-      - run: bundle install
-      - run: bundle exec rake
-      - run: bundle exec rubocop
+      - run:
+          name: submodule update and execute
+          command: |
+            gem install bundler -v 1.17.3
+            bundle install
+            bundle exec rake
+            bundle exec rubocop
 
 workflows:
   version: 2
