@@ -11,8 +11,19 @@ jobs:
       - run: bundle exec rake
       - run: bundle exec rubocop
 
+  ruby-2.6:
+    docker:
+      - image: ruby:2.6.5
+    steps:
+      - checkout
+      - run: gem install bundler -v 1.17.3
+      - run: bundle install
+      - run: bundle exec rake
+      - run: bundle exec rubocop
+
 workflows:
   version: 2
   test:
     jobs:
       - ruby-2.5
+      - ruby-2.6
