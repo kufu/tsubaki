@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 
 jobs:
   ruby-2.5:
@@ -7,7 +7,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: submodule update and execute
+          name: install and execute
           command: |
             gem install bundler -v 1.17.3
             bundle install
