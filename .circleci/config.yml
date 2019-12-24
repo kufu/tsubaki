@@ -7,12 +7,12 @@ jobs:
     steps:
       - checkout
       - run:
-        name: submodule update and execute
-        command: |
-          gem install bundler -v 1.17.3
-          bundle install
-          bundle exec rake
-          bundle exec rubocop
+          name: submodule update and execute
+          command: |
+            gem install bundler -v 1.17.3
+            bundle install
+            bundle exec rake
+            bundle exec rubocop
 workflows:
   version: 2
   test:
