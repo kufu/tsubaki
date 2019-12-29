@@ -13,7 +13,7 @@ jobs:
       - run:
           name: install and execute
           command: |
-            gem install bundler -v 1.17.3
+            gem install bundler -v 1.17.3 --no-document --force
             bundle install
             bundle exec rake
             bundle exec rubocop
