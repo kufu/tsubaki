@@ -29,6 +29,7 @@ commands:
       - run:
           name: Bundle gems
           command: |
+            gem install bundler -v 1.17.3 --no-document --force
             bundle install
   run_tests:
     description: "Run tests"
