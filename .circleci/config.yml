@@ -1,24 +1,80 @@
 version: 2.1
 
-jobs:
-  ruby:
+executors:
+  working_directory: /root/tsubaki
+  ruby_2_7:
     docker:
-      - image: rubylang/ruby:2.5.7-bionic
+      - image: rubylang/ruby:2.7-bionic
+  ruby_2_6:
+    docker:
+      - image: rubylang/ruby:2.6-bionic
+  ruby_2_5:
+    docker:
+      - image: rubylang/ruby:2.5-bionic
+  ruby_2_4:
+    docker:
+      - image: rubylang/ruby:2.4-bionic
+
+commands:
+  install_system_dependencies:
+    description: "Install system dependencies"
     steps:
       - run:
           name: Install System Dependencies
           # https://circleci.com/docs/2.0/custom-images/#required-tools-for-primary-containers
           command: apt-get update -y && apt-get install -y ssh
-      - checkout
+  bundle_gems:
+    description: "Bundle gems"
+    steps:
       - run:
-          name: install and execute
+          name: Bundle gems
           command: |
             gem install bundler -v 1.17.3 --no-document --force
             bundle install
+  run_tests:
+    description: "Run tests"
+    steps:
+      - run:
+          name: Run tests
+          command: |
             bundle exec rake
             bundle exec rubocop
+
+jobs:
+  run_tests_on_ruby_2_7:
+    executor: ruby_2_7
+    steps:
+      - install_system_dependencies
+      - checkout
+      - bundle_gems
+      - run_tests
+  run_tests_on_ruby_2_6:
+    executor: ruby_2_6
+    steps:
+      - install_system_dependencies
+      - checkout
+      - bundle_gems
+      - run_tests
+  run_tests_on_ruby_2_5:
+    executor: ruby_2_5
+    steps:
+      - install_system_dependencies
+      - checkout
+      - bundle_gems
+      - run_tests
+  run_tests_on_ruby_2_4:
+    executor: ruby_2_4
+    steps:
+      - install_system_dependencies
+      - checkout
+      - bundle_gems
+      - run_tests
+
 workflows:
   version: 2
   test:
     jobs:
-      - ruby
+      - run_tests_on_ruby_2_7
+      - run_tests_on_ruby_2_6
+      - run_tests_on_ruby_2_5
+      - run_tests_on_ruby_2_4
