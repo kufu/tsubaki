@@ -4,7 +4,7 @@
 
 Each resident in Japan is notified of his or her own Individual Number (a.k.a. **"My Number"**) beginning in October 2015, and each company is given its own **Corporate Number** likewise.
 
-This gem provides both **My Number** and **Corporate Number** validators which inspect the format and (optionally) the check digit.  
+This gem provides both **My Number** and **Corporate Number** validators which inspect the format and (optionally) the check digit.
 
 ## Installation
 
@@ -117,6 +117,10 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/kufu/tsubaki.
+
+## Code of Conduct
+
+Everyone interacting in the tsubaki project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/kufu/tsubaki/blob/master/CODE_OF_CONDUCT.md).
 
 
 ## License
