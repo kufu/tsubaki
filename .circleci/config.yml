@@ -5,15 +5,27 @@ executors:
   ruby_2_7:
     docker:
       - image: rubylang/ruby:2.7-bionic
+        auth:
+          username: smarthrinc
+          password: $DOCKER_HUB_ACCESS_TOKEN
   ruby_2_6:
     docker:
       - image: rubylang/ruby:2.6-bionic
+        auth:
+          username: smarthrinc
+          password: $DOCKER_HUB_ACCESS_TOKEN
   ruby_2_5:
     docker:
       - image: rubylang/ruby:2.5-bionic
+        auth:
+          username: smarthrinc
+          password: $DOCKER_HUB_ACCESS_TOKEN
   ruby_2_4:
     docker:
       - image: rubylang/ruby:2.4-bionic
+        auth:
+          username: smarthrinc
+          password: $DOCKER_HUB_ACCESS_TOKEN
 
 commands:
   install_system_dependencies:
