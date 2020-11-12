@@ -83,7 +83,7 @@ describe User do
   it { should validate_my_number_of(:digits) }
 
   # To ensure options:
-  it { should validate_validate_my_number_of(:digits).strict.with_divider('-').allow_blank }
+  it { should validate_my_number_of(:digits).strict.with_divider('-').allow_blank }
 end
 
 describe Company do
@@ -91,7 +91,7 @@ describe Company do
   it { should validate_corporate_number_of(:digits) }
 
   # To ensure options:
-  it { should validate_validate_corporate_number_of(:digits).strict.with_divider('-') }
+  it { should validate_corporate_number_of(:digits).strict.with_divider('-') }
 end
 ```
 
