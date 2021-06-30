@@ -86,7 +86,11 @@ workflows:
   version: 2
   test:
     jobs:
-      - run_tests_on_ruby_3_0
-      - run_tests_on_ruby_2_7
-      - run_tests_on_ruby_2_6
-      - run_tests_on_ruby_2_5
+      - run_tests_on_ruby_3_0:
+          context: smarthr-dockerhub
+      - run_tests_on_ruby_2_7:
+          context: smarthr-dockerhub
+      - run_tests_on_ruby_2_6:
+          context: smarthr-dockerhub
+      - run_tests_on_ruby_2_5:
+          context: smarthr-dockerhub
