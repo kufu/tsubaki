@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
+require 'tsubaki/matchers/validate_corporate_number_of_matcher'
 
 describe Tsubaki::CorporateNumberValidator do
   describe 'validation w/o any options' do
@@ -85,6 +86,23 @@ describe Tsubaki::CorporateNumberValidator do
     end
     it 'should not be valid when :allow_blank option is set to false' do
       expect(TestCorporationAllowBlankFalse.new(corporate_number: nil)).not_to be_valid
+    end
+  end
+
+  describe '#on' do
+    let(:matcher) do
+      Tsubaki::Shoulda::Matchers::ValidateCorporateNumberOfMatcher.new(:corporate_number)
+    end
+
+    it 'returns itself' do
+      expect(matcher.on(:some_context)).to eq(matcher)
+    end
+
+    it 'sets options[:on]' do
+      expect { matcher.on(:some_context) }
+        .to change { matcher.instance_variable_get(:@options)[:on] }
+        .from(nil)
+        .to(:some_context)
     end
   end
 end

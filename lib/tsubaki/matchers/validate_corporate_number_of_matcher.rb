@@ -8,8 +8,12 @@ module Tsubaki
       #
       # Example:
       #   describe Corporation do
-      #     it { should validate_corporate_number_of(:digits)
+      #     it { should validate_corporate_number_of(:digits) }
       #     it { should validate_corporate_number_of(:digits).strict.with_divider('-') }
+      #   end
+      #
+      #   describe AnotherCorporation do
+      #     it { should validate_corporate_number_of(:digits).on(:create) }
       #   end
       def validate_corporate_number_of(attribute_name)
         ValidateCorporateNumberOfMatcher.new(attribute_name)
@@ -22,6 +26,7 @@ module Tsubaki
           @options[:strict] = nil
           @options[:divider] = nil
           @options[:allow_blank] = nil
+          @options[:on] = nil
           @failure_messages = []
         end
 
@@ -37,10 +42,11 @@ module Tsubaki
 
         def description
           result = 'ensure corporate number format'
-          result << " for #{@attribute_name}"
-          result << ' with strict mode' if @options[:strict].present?
-          result << " with divider '#{@options[:divider]}'" if @options[:divider].present?
-          result << ' and allow blank' if @options[:allow_blank].present?
+          result += " for #{@attribute_name}"
+          result += ' with strict mode' if @options[:strict].present?
+          result += " with divider '#{@options[:divider]}'" if @options[:divider].present?
+          result += ' and allow blank' if @options[:allow_blank].present?
+          result += " on #{@options[:on]}" if @options[:on].present?
           result
         end
 
@@ -59,6 +65,11 @@ module Tsubaki
           self
         end
 
+        def on(on)
+          @options[:on] = on
+          self
+        end
+
         private
 
         def error_when_not_valid
@@ -72,7 +83,11 @@ module Tsubaki
         def valid_attribute_with?(value)
           dup_subject = @subject.dup
           dup_subject.send("#{@attribute_name}=", value)
-          dup_subject.valid?
+          if @options[:on]
+            dup_subject.valid?(@options[:on])
+          else
+            dup_subject.valid?
+          end
           dup_subject.errors[@attribute_name].blank?
         end
 
