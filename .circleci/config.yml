@@ -1,81 +1,32 @@
 version: 2.1
 
-executors:
-  working_directory: /root/tsubaki
-  ruby_3_1:
+jobs:
+  test:
+    parameters:
+      ruby-version:
+        type: string
     docker:
-      - image: rubylang/ruby:3.1-focal
+      - image: cimg/ruby:<< parameters.ruby-version >>
         auth:
           username: smarthrinc
           password: $DOCKER_HUB_ACCESS_TOKEN
-  ruby_3_0:
-    docker:
-      - image: rubylang/ruby:3.0-focal
-        auth:
-          username: smarthrinc
-          password: $DOCKER_HUB_ACCESS_TOKEN
-  ruby_2_7:
-    docker:
-      - image: rubylang/ruby:2.7-bionic
-        auth:
-          username: smarthrinc
-          password: $DOCKER_HUB_ACCESS_TOKEN
-
-commands:
-  install_system_dependencies:
-    description: "Install system dependencies"
     steps:
+      - checkout
       - run:
-          name: Install System Dependencies
-          # https://circleci.com/docs/2.0/custom-images/#required-tools-for-primary-containers
-          command: apt-get update -y && apt-get install -y ssh
-  bundle_gems:
-    description: "Bundle gems"
-    steps:
-      - run:
-          name: Bundle gems
+          name: Install dependency gems
           command: |
             gem install bundler -v 2.2.14 --no-document --force
             bundle install
-  run_tests:
-    description: "Run tests"
-    steps:
-      - run:
-          name: Run tests
-          command: |
-            bundle exec rake
-            bundle exec rubocop
-
-jobs:
-  run_tests_on_ruby_3_1:
-    executor: ruby_3_1
-    steps:
-      - install_system_dependencies
-      - checkout
-      - bundle_gems
-      - run_tests
-  run_tests_on_ruby_3_0:
-    executor: ruby_3_0
-    steps:
-      - install_system_dependencies
-      - checkout
-      - bundle_gems
-      - run_tests
-  run_tests_on_ruby_2_7:
-    executor: ruby_2_7
-    steps:
-      - install_system_dependencies
-      - checkout
-      - bundle_gems
-      - run_tests
+      - run: bundle exec rubocop
+      - run: bundle exec rspec
 
 workflows:
-  version: 2
-  test:
+  tests:
     jobs:
-      - run_tests_on_ruby_3_1:
-          context: smarthr-dockerhub
-      - run_tests_on_ruby_3_0:
-          context: smarthr-dockerhub
-      - run_tests_on_ruby_2_7:
-          context: smarthr-dockerhub
+      - test:
+          matrix:
+            parameters:
+              ruby-version:
+                - '2.7'
+                - '3.0'
+                - '3.1'
