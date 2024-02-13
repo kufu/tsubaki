@@ -1,4 +1,4 @@
-# Tsubaki [![Circle CI](https://circleci.com/gh/kufu/tsubaki/tree/master.svg?style=svg)](https://circleci.com/gh/kufu/tsubaki/tree/master)
+# Tsubaki [![Build Status](https://github.com/kufu/tsubaki/actions/workflows/test.yml/badge.svg)](https://github.com/kufu/tsubaki/actions/workflows/test.yml)
 
 ![tsubaki_1427x327](https://cloud.githubusercontent.com/assets/2214179/11577574/0f3394d6-9a62-11e5-81ee-7386c29c30e1.png)
 
