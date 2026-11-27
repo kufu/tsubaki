@@ -106,8 +106,6 @@ Tsubaki::MyNumber.rand # => 765895492872
 Tsubaki::CorporateNumber.rand # => 5868731863533
 ```
 
-[擬似マイナンバーくん](https://my-number-kun.herokuapp.com/) demonstrates the random number generators.
-
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
